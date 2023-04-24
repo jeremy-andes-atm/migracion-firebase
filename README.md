@@ -16,15 +16,15 @@ En primera instancia, si visualizamos el archivo `app.module.ts`, podemos encont
 	imports: [
 		...
 		AngularFireModule.initializeApp(environment.firebase),
-        AngularFireFunctionsModule,
-        AngularFireDatabaseModule,
-        AngularFirestoreModule,
-        AngularFireAuthModule,
-        AngularFireStorageModule,
-        AngularFirePerformanceModule,
-        AngularFireAnalyticsModule,
-        AngularFireMessagingModule,
-        ...
+        	AngularFireFunctionsModule,
+        	AngularFireDatabaseModule,
+        	AngularFirestoreModule,
+        	AngularFireAuthModule,
+        	AngularFireStorageModule,
+        	AngularFirePerformanceModule,
+        	AngularFireAnalyticsModule,
+        	AngularFireMessagingModule,
+        	...
 	],
 	...
 });
@@ -32,26 +32,26 @@ En primera instancia, si visualizamos el archivo `app.module.ts`, podemos encont
 Como las versiones de compatibilidad importadas de `@angular/fire/compat` conviven correctamente junto a las versiones modulares importadas de `@angular/fire`, separamos los imports de Firebase para realizar la migración parcialmente e incluir las 2 versiones hasta que nos quedemos 100% con la modular:
 ```ts
 const ANGULAR_FIRE_DEPS = [
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
-    providePerformance(() => getPerformance()),
-    provideAnalytics(() => getAnalytics()),
-    provideFirestore(() => getFirestore()),
-    provideMessaging(() => getMessaging()),
-    provideStorage(() => getStorage()),
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireFunctionsModule,
-    AngularFireDatabaseModule,
-    AngularFirestoreModule,
-    AngularFireAuthModule,
-    AngularFireMessagingModule,
+    	provideFirebaseApp(() => initializeApp(environment.firebase)),
+    	provideAuth(() => getAuth()),
+    	providePerformance(() => getPerformance()),
+    	provideAnalytics(() => getAnalytics()),
+    	provideFirestore(() => getFirestore()),
+    	provideMessaging(() => getMessaging()),
+    	provideStorage(() => getStorage()),
+    	AngularFireModule.initializeApp(environment.firebase),
+    	AngularFireFunctionsModule,
+    	AngularFireDatabaseModule,
+    	AngularFirestoreModule,
+    	AngularFireAuthModule,
+    	AngularFireMessagingModule,
 ];
 
 @NgModule({
 	declarations: [AppComponent],
 	imports: [
 		...ANGULAR_FIRE_DEPS,
-        ...
+        	...
 	],
 	...
 });
