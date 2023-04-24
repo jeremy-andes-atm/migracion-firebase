@@ -190,7 +190,7 @@ listenDoc(conversationId: string, companyId: string): Observable<Conversation> {
 }
 ```
 
-## Firestore Modular
+# Firestore Modular
 Luego de repasar las implementaciones anteriores, procedemos a explicar las nuevas!
 
 ### Constructor de clase:
