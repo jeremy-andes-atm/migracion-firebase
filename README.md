@@ -421,7 +421,7 @@ Para desubscribirse de un listener, acá tienen los ejemplos (haciendo referenci
  
  Y este sería un ejemplo de un método de tipo `Unsubscribe` dentro de un componente o servicio:
 ```ts
-//Versión onSnapshot
+// Versión onSnapshot
 private listenDocumentUnsubscribe(conversationId: string, companyId: string): void {
 	this.docSnapshotUnsubscribe = onSnapshot(
 		doc(
@@ -435,7 +435,7 @@ private listenDocumentUnsubscribe(conversationId: string, companyId: string): vo
 	)
 }
 
-//Versión Observable - Solo data
+// Versión Observable - Solo data
 private listenDocumentData(conversationId: string, companyId: string): void {
 	this.docSubscription = docData(
 		doc(
@@ -447,7 +447,7 @@ private listenDocumentData(conversationId: string, companyId: string): void {
 	})
 }
 
-//Versión Observable - Snapshot
+// Versión Observable - Snapshot
 private listenDocumentSnapshot(conversationId: string, companyId: string): void {
 	this.docSnapshotSubscription = docSnapshots(
 		doc(
