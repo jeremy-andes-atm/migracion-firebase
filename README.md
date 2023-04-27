@@ -416,11 +416,12 @@ async deleteDocument(conversationId: string, companyId: string): Promise<void> {
 En el caso de que se requiera escuchar en tiempo real los cambios de un documento, tenemos que importar el método `onSnapshot` que nos devuelve un callback ejecutable de tipo `Unsubscribe`, similar a los observables de Angular pero se ejecuta directamente.
 
 Para desubscribirse de un listener, acá tienen los ejemplos (haciendo referencia a listeners almacenados en la clase):
-- Observable de Angular: `this.subscription.unsubscribe()`
+- Observable de Angular: `this.docSubscription.unsubscribe()`
 - Callback de onSnapshot: `this.docSnapshotUnsubscribe()`
  
  Y este sería un ejemplo de un método de tipo `Unsubscribe` dentro de un componente o servicio:
 ```ts
+//Versión onSnapshot
 private listenDocument(conversationId: string, companyId: string): void {
 	this.docSnapshotUnsubscribe = onSnapshot(
 		doc(
@@ -434,8 +435,34 @@ private listenDocument(conversationId: string, companyId: string): void {
 	)
 }
 
+//Versión Observable - Solo data
+private listenDocument(conversationId: string, companyId: string): void {
+	this.docSubscription = docData(
+		doc(
+			this.firestore,
+			`companies/${companyId}/conversations/${conversationId}`
+		)
+	).subscribe(response => {
+		this.conversation = response; // No es necesario transformar la data
+	})
+}
+
+//Versión Observable - Snapshot
+private listenDocument(conversationId: string, companyId: string): void {
+	this.docSnapshotSubscription = docSnapshots(
+		doc(
+			this.firestore,
+			`companies/${companyId}/conversations/${conversationId}`
+		)
+	).subscribe(response => {
+		this.conversation = response.data(); // Necesitamos transformar la data
+	})
+}
+
 // OBLIGATORIO implementar ngOnDestroy en los componentes
 ngOnDestroy(): void {
-	this.docSnapshotUnsubscribe();
+	this.docSnapshotUnsubscribe(); // Versión onSnapshot
+	this.docSubscription.unsubscribe(); // Versión Observable - Solo data
+	this.docSnapshotSubscription.unsubscribe(); // Versión Observable - Snapshot
 }
 ```
