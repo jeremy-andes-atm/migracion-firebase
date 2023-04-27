@@ -413,7 +413,7 @@ async deleteDocument(conversationId: string, companyId: string): Promise<void> {
 
 ### Documentos simples - Tiempo real
 
-En el caso de que se requiera escuchar en tiempo real los cambios de un documento, tenemos que importar el método `onSnapshot` que nos devuelve un callback ejecutable de tipo `Unsubscribe`, similar a los observables de Angular pero se ejecuta directamente.
+En el caso de que se requiera escuchar en tiempo real los cambios de un documento, podemos importar el método `onSnapshot` que nos devuelve un callback ejecutable de tipo `Unsubscribe`, similar a los observables de Angular pero se ejecuta directamente, o también podemos usar las versiones de observables con los métodos `docData` o `docSnapshots`.
 
 Para desubscribirse de un listener, acá tienen los ejemplos (haciendo referencia a listeners almacenados en la clase):
 - Observable de Angular: `this.docSubscription.unsubscribe()`
