@@ -422,7 +422,7 @@ Para desubscribirse de un listener, acá tienen los ejemplos (haciendo referenci
  Y este sería un ejemplo de un método de tipo `Unsubscribe` dentro de un componente o servicio:
 ```ts
 //Versión onSnapshot
-private listenDocument(conversationId: string, companyId: string): void {
+private listenDocumentUnsubscribe(conversationId: string, companyId: string): void {
 	this.docSnapshotUnsubscribe = onSnapshot(
 		doc(
 			this.firestore,
@@ -436,7 +436,7 @@ private listenDocument(conversationId: string, companyId: string): void {
 }
 
 //Versión Observable - Solo data
-private listenDocument(conversationId: string, companyId: string): void {
+private listenDocumentData(conversationId: string, companyId: string): void {
 	this.docSubscription = docData(
 		doc(
 			this.firestore,
@@ -448,7 +448,7 @@ private listenDocument(conversationId: string, companyId: string): void {
 }
 
 //Versión Observable - Snapshot
-private listenDocument(conversationId: string, companyId: string): void {
+private listenDocumentSnapshot(conversationId: string, companyId: string): void {
 	this.docSnapshotSubscription = docSnapshots(
 		doc(
 			this.firestore,
