@@ -362,6 +362,7 @@ collectionChanges(
 		limit(N)
 	)
 ).subscribe(response => {
+	// CUIDADO: NO se va a ejecutar el observable si el resultado de la query no devuelve datos.
 	this.conversations = fullFillData(this.conversations || [], response); // El OR se indica porque puede ser un arreglo vacío
 })
 ```
